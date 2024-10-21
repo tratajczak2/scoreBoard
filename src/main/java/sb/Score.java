@@ -8,4 +8,12 @@ public class Score {
         this.home = home;
         this.away = away;
     }
+
+    public int getHome() {
+        return home;
+    }
+
+    public int getAway() {
+        return away;
+    }
 }
