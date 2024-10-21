@@ -10,4 +10,11 @@ public class ScoreBoardTest {
         assertNotNull(new ScoreBoard());
     }
 
+    @Test
+    void testShouldStartNewMatch() {
+        ScoreBoard sb = new ScoreBoard();
+        sb.newMatch(new Team("Uruguay"), new Team("Italy"));
+
+        assertEquals(1, sb.summary().size());
+    }
 }

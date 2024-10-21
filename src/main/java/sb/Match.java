@@ -12,4 +12,7 @@ public class Match {
         this.awayTeam = awayTeam;
     }
 
+    public void setScore(Score score) {
+        this.score = score;
+    }
 }
