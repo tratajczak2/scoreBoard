@@ -35,22 +35,18 @@ public class ScoreBoard {
         }
         match.setScore(score);
 
-        if (board.size() == 0) {
-            board.add(0, match);
-        } else {
-            // move according to the score
-            boolean inserted = false;
-            int i;
-            for (i = 0; i < board.size(); i++) {
-                if (match.compare(match, board.get(i)) >= 0) {
-                    board.add(i, match);
-                    inserted = true;
-                    break;
-                }
+        // insert according to the score and start
+        boolean inserted = false;
+        int i;
+        for (i = 0; i < board.size(); i++) {
+            if (match.compare(match, board.get(i)) >= 0) {
+                board.add(i, match);
+                inserted = true;
+                break;
             }
-            if (i == board.size() && !inserted) {
-                board.add(match);
-            }
+        }
+        if (i == board.size() && !inserted) {
+            board.add(match);
         }
     }
 
