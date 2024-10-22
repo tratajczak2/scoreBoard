@@ -9,6 +9,9 @@ public class ScoreBoard {
     private int version = 0;
 
     public void newMatch(Pair pair) {
+        if (findByPair(pair) != null)
+            throw new IllegalArgumentException("Match is already playing");
+
         updateScore(pair, new Score(0, 0));
     }
 

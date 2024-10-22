@@ -64,4 +64,14 @@ public class ScoreBoardTest {
         sb.finishMatch(new Pair(new Team("Mexico"), new Team("Canada")));
         assertEquals(0, sb.summary().size());
     }
+
+    @Test
+    void testShouldNotAllowDuplicateMatches() {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+            () -> {
+                sb.newMatch(new Pair(new Team("Uruguay"), new Team("Italy")));
+                sb.newMatch(new Pair(new Team("Uruguay"), new Team("Italy")));
+            });
+        assertEquals("Match is already playing", exception.getMessage());
+    }
 }

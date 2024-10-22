@@ -4,9 +4,9 @@ import java.util.Comparator;
 
 public class Match implements Comparator<Match> {
 
-    private Pair pair;
+    private final Pair pair;
     private Score score;
-    private long start;
+    private int start;
 
     public Match(Pair pair) {
         this.pair = pair;
@@ -20,7 +20,7 @@ public class Match implements Comparator<Match> {
         return pair;
     }
 
-    public void setStart(long start) {
+    public void setStart(int start) {
         this.start = start;
     }
 
