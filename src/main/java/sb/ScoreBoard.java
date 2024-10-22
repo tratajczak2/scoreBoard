@@ -5,7 +5,7 @@ import java.util.List;
 
 public class ScoreBoard {
 
-    private List<Match> board = new ArrayList<>();
+    private final List<Match> board = new ArrayList<>();
     private int version = 0;
 
     public void newMatch(Pair pair) {
@@ -49,5 +49,10 @@ public class ScoreBoard {
                 board.add(match);
             }
         }
+    }
+
+    public void finishMatch(Pair pair) {
+        Match match = findByPair(pair);
+        board.remove(match);
     }
 }
