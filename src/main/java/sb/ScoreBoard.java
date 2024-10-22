@@ -6,14 +6,10 @@ import java.util.List;
 public class ScoreBoard {
 
     private List<Match> board = new ArrayList<>();
+    private int version = 0;
 
-    public Match newMatch(Pair pair) {
-        Match match = new Match(pair);
-        match.setScore(new Score(0, 0));
-        match.setStart(System.nanoTime());
-
-        board.add(0, match);
-        return match;
+    public void newMatch(Pair pair) {
+        updateScore(pair, new Score(0, 0));
     }
 
     public List<Match> summary() {
@@ -23,24 +19,34 @@ public class ScoreBoard {
     public Match findByPair(Pair pair) {
         return board.stream()
                 .filter(m -> m.getPair().equals(pair))
-                .findFirst().get();
+                .findFirst().orElse(null);
     }
 
     public void updateScore(Pair pair, Score score) {
         Match match = findByPair(pair);
+        if (match != null) {
+            board.remove(match);
+        } else {
+            match = new Match(pair);
+            match.setStart(version++);
+        }
         match.setScore(score);
-        board.remove(match);
-        // move according to the score
+
         if (board.size() == 0) {
             board.add(0, match);
         } else {
-            for (int i = 0; i < board.size(); i++) {
+            // move according to the score
+            boolean inserted = false;
+            int i;
+            for (i = 0; i < board.size(); i++) {
                 if (match.compare(match, board.get(i)) >= 0) {
                     board.add(i, match);
-                } else {
-                    board.add(match);
+                    inserted = true;
+                    break;
                 }
-                break;
+            }
+            if (i == board.size() && !inserted) {
+                board.add(match);
             }
         }
     }

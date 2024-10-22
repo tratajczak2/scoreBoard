@@ -42,7 +42,19 @@ public class ScoreBoardTest {
         sb.newMatch(p2);
         sb.updateScore(p2, new Score(6, 6));
 
+        Pair p3 = new Pair(new Team("Germany"), new Team("France"));
+        sb.newMatch(p3);
+        sb.updateScore(p3, new Score(2, 2));
+
+        Pair p4 = new Pair(new Team("Argentina"), new Team("Australia"));
+        sb.newMatch(p4);
+        sb.updateScore(p4, new Score(3, 1));
+
         System.out.println(sb.summary());
         assertEquals("Uruguay", sb.summary().get(0).getPair().getHome().getName());
+        assertEquals("Spain", sb.summary().get(1).getPair().getHome().getName());
+        assertEquals("Mexico", sb.summary().get(2).getPair().getHome().getName());
+        assertEquals("Argentina", sb.summary().get(3).getPair().getHome().getName());
+        assertEquals("Germany", sb.summary().get(4).getPair().getHome().getName());
     }
 }
