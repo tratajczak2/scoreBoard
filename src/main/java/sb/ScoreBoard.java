@@ -12,7 +12,12 @@ public class ScoreBoard {
         if (findByPair(pair) != null)
             throw new IllegalArgumentException("Match is already playing");
 
-        updateScore(pair, new Score(0, 0));
+        //updateScore(pair, new Score(0, 0));
+
+        Match match = new Match(pair);
+        match.setScore(new Score(0, 0));
+        match.setStart(version++);
+        insertMatch(match);
     }
 
     public List<Match> summary() {
@@ -25,16 +30,7 @@ public class ScoreBoard {
                 .findFirst().orElse(null);
     }
 
-    public void updateScore(Pair pair, Score score) {
-        Match match = findByPair(pair);
-        if (match != null) {
-            board.remove(match);
-        } else {
-            match = new Match(pair);
-            match.setStart(version++);
-        }
-        match.setScore(score);
-
+    private void insertMatch(Match match) {
         // insert according to the score and start
         boolean inserted = false;
         int i;
@@ -48,6 +44,13 @@ public class ScoreBoard {
         if (i == board.size() && !inserted) {
             board.add(match);
         }
+    }
+
+    public void updateScore(Pair pair, Score score) {
+        Match match = findByPair(pair);
+        match.setScore(score);
+        board.remove(match);
+        insertMatch(match);
     }
 
     public void finishMatch(Pair pair) {
