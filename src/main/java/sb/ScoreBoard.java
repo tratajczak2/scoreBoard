@@ -12,8 +12,6 @@ public class ScoreBoard {
         if (findByPair(pair) != null)
             throw new IllegalArgumentException("Match is already playing");
 
-        //updateScore(pair, new Score(0, 0));
-
         Match match = new Match(pair);
         match.setScore(new Score(0, 0));
         match.setStart(version++);
