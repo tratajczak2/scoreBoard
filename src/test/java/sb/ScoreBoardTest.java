@@ -49,11 +49,11 @@ public class ScoreBoardTest {
         sb.updateScore(p4, new Score(3, 1));
 
         System.out.println(sb.summary());
-        assertEquals("Uruguay", sb.summary().get(0).getPair().getHome().getName());
-        assertEquals("Spain", sb.summary().get(1).getPair().getHome().getName());
-        assertEquals("Mexico", sb.summary().get(2).getPair().getHome().getName());
-        assertEquals("Argentina", sb.summary().get(3).getPair().getHome().getName());
-        assertEquals("Germany", sb.summary().get(4).getPair().getHome().getName());
+        assertEquals("Uruguay", sb.summary().get(0).getPair().home().name());
+        assertEquals("Spain", sb.summary().get(1).getPair().home().name());
+        assertEquals("Mexico", sb.summary().get(2).getPair().home().name());
+        assertEquals("Argentina", sb.summary().get(3).getPair().home().name());
+        assertEquals("Germany", sb.summary().get(4).getPair().home().name());
     }
 
     @Test

@@ -25,7 +25,7 @@ public class Match implements Comparator<Match> {
     }
 
     public int getTotal() {
-        return score.getHome() + score.getAway();
+        return score.home() + score.away();
     }
 
     @Override
